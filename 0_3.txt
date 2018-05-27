@@ -1,0 +1,45 @@
+title 0.3
+
+kayttaja->selain:
+    note left of selain
+    kayttaja kirjoittaa osoiteriville 
+    https://fullstack-exampleapp.herokuapp.com/notes
+    end note
+    
+selain->palvelin: GET https://fullstack-exampleapp.herokuapp.com/notes
+    note left of palvelin
+    muodostetaan HTML joka sisältää HTML-formin jolla voi 
+    lähettää uuden muistiinpanon, ja jonka otsakkeessa on viite script-osaan
+    end note
+
+palvelin -> selain: status 200, sivun HTML-koodi
+
+    note left of selain
+    selain alkaa hakea kaikkia html:ssä viitattuja tiedostoja
+    end note
+
+selain -> palvelin: GET https://fullstack-exampleapp.herokuapp.com/main.css
+    
+palvelin -> selain: status 200, sivun CSS-koodi
+
+    note left of selain
+    haetaan HTML:ssä viitattu skripti
+    end note
+    
+selain -> palvelin: GET https://fullstack-exampleapp.herokuapp.com/main.js
+
+palvelin -> selain: status 200, javascript-tiedosto
+
+    note left of selain
+    skripti ajetaan, se käynnistää xhttp-pyynnön ja hakee datan
+    end note
+
+selain->palvelin: GET https://fullstack-exampleapp.herokuapp.com/data.json
+    
+palvelin->selain: status 200, json-muotoinen data
+    note left of selain
+    selain vastaanottaa datan ja ajaa tapahtumankuuntelijan skriptissä ja muodostaa 
+    HTML:n jossa on lista, asettaa tyylit css:n mukaisesti ja renderöi sivun
+    end note
+    
+    

@@ -1,0 +1,26 @@
+title 0.5
+
+kayttaja -> selain
+note left of selain
+käyttäjä syöttää osoitteen https://fullstack-exampleapp.herokuapp.com/spa
+end note
+selain -> palvelin: GET https://fullstack-exampleapp.herokuapp.com/spa
+palvelin-> selain: status 200, sivun HTML-sisältö
+
+note left of selain
+selain parsii HTML-sisältöä ja hakee siinä viitatun Javascript-tiedoston seuraavaksi
+end note
+
+selain->palvelin: GET https://fullstack-exampleapp.herokuapp.com/spa.js
+palvelin->selain: status 200, spa.js -Javascript-tiedosto
+
+note left of selain
+selain ajaa Javascriptin, missä käynnistetään pyyntö datalle
+end note
+
+selain->palvelin: GET https://fullstack-exampleapp.herokuapp.com/data.json
+palvelin->selain: status 200, json-muotoinen data
+
+note left of selain:
+Javascript lisää DOM-puuhun elementit joilla lista saadaan näkyviin sivulle
+end note

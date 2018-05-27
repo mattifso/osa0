@@ -1,0 +1,55 @@
+title 0.4
+
+kayttaja -> selain
+note left of selain
+kayttaja kirjoittaa muistiinpanon ja painaa "talleta"
+end note
+selain -> palvelin: POST https://fullstack-exampleapp.herokuapp.com/new_note
+
+note left of palvelin 
+palvelin vastaanottaa pyynnön, käsittelee sen eli tallettaa datan ja lähettää 
+selaimelle pyynnön ladata sivu uudestaan jotta tiedot päivittyvät käyttäjälle näkyviin
+end note
+
+palvelin -> selain: status 302, headerilla 'Location: /notes'
+
+note left of selain 
+selain reagoi uudelleenohjauspyyntöön ja lataa annetun osoitteen https://fullstack-exampleapp.herokuapp.com/notes
+end note
+
+selain -> palvelin: GET https://fullstack-exampleapp.herokuapp.com/notes
+
+note left of palvelin 
+palvelin muodostaa uusimman version sivusta tietoineen
+end note
+
+palvelin -> selain: status 200
+
+note left of selain 
+selain alkaa ladata kaikkia HTML-tiedostossa viitattuja tiedostoja
+end note
+
+selain -> palvelin: GET https://fullstack-exampleapp.herokuapp.com/main.css
+
+palvelin -> selain: status 200, css-tiedosto
+
+selain -> palvelin: GET https://fullstack-exampleapp.herokuapp.com/main.js
+
+palvelin -> selain: 200 , javascript-tiedosto
+
+note left of selain 
+selain suorittaa javascriptin ja tekee sen myötä taas xhttp-pyynnön
+end note
+
+selain -> palvelin: GET https://fullstack-exampleapp.herokuapp.com/data.json
+
+palvelin -> selain: status 200, json-muotoinen data
+
+note left of selain 
+    selain renderöi lopullisen sivun selaimen tekemän html:n ja javascriptin suorituksen jälkeen 
+    tehtyjen päivitysten perusteella, sekä haetun CSS:n mukaisesti
+end note
+
+
+
+

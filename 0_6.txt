@@ -1,0 +1,15 @@
+title 0.6
+
+kayttaja -> selain
+note left of selain
+kayttaja kirjoittaa muistiinpanon ja painaa "talleta"
+Javascript-applikaatio selaimessa (spa.js) päivittää DOMin uuden tiedon mukaan ja renderöi sen näkyviin käyttäjälle, ja lähettää sitten tiedon myös palvelimelle tallettamista varten
+end note
+selain -> palvelin: POST /new_note_spa
+
+note left of palvelin
+palvelimella pyynnön käsittelevä ohjelma tallentaa uuden tiedon
+end note
+
+palvelin-> selain: status 201
+
